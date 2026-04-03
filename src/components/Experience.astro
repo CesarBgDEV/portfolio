@@ -1,0 +1,94 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+export interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const experiences = [
+  {
+    roleKey: 'exp.1.role',
+    companyKey: 'exp.1.company',
+    periodKey: 'exp.1.period',
+    descKey: 'exp.1.desc',
+    stack: ['Astro', 'Django', 'Docker', 'Nginx', 'DigitalOcean'],
+    current: true,
+  },
+  {
+    roleKey: 'exp.2.role',
+    companyKey: 'exp.2.company',
+    periodKey: 'exp.2.period',
+    descKey: 'exp.2.desc',
+    stack: ['Django', 'Bootstrap', 'MySQL', 'Git'],
+    current: true,
+  },
+  {
+    roleKey: 'exp.3.role',
+    companyKey: 'exp.3.company',
+    periodKey: 'exp.3.period',
+    descKey: 'exp.3.desc',
+    stack: ['CodeIgniter', 'Bootstrap', 'MySQL', 'jQuery'],
+    current: false,
+  },
+  {
+    roleKey: 'exp.4.role',
+    companyKey: 'exp.4.company',
+    periodKey: 'exp.4.period',
+    descKey: 'exp.4.desc',
+    stack: ['Figma', 'Atomic Design'],
+    current: false,
+  },
+  {
+    roleKey: 'exp.5.role',
+    companyKey: 'exp.5.company',
+    periodKey: 'exp.5.period',
+    descKey: 'exp.5.desc',
+    stack: ['.NET', 'SQL Server', 'Genexus'],
+    current: false,
+  },
+];
+---
+
+<section id="experience" class="section">
+  <div class="container">
+    <h2
+      class="section-title mb-5"
+      data-reveal
+      style="--reveal-delay: 0s"
+    >{t('experience.title')}</h2>
+
+    <div class="timeline">
+      {experiences.map((exp, i) => (
+        <div
+          class="timeline-item"
+          data-reveal="left"
+          style={`--reveal-delay: ${i * 0.12}s`}
+        >
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mb-1">
+              <h3 class="timeline-role">{t(exp.roleKey)}</h3>
+              {exp.current && (
+                <span class="badge-production">
+                  <span class="dot-active"></span>
+                  {t('experience.present')}
+                </span>
+              )}
+            </div>
+            <p class="timeline-company">{t(exp.companyKey)}</p>
+            <p class="timeline-period">{t(exp.periodKey)}</p>
+            <p class="timeline-desc">{t(exp.descKey)}</p>
+            <div class="chips-wrap">
+              {exp.stack.map((s) => (
+                <span class="chip">{s}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+---
+export interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const esHref = Astro.url.pathname.replace(/^\/(en|es)/, '/es') || '/es/';
+const enHref = Astro.url.pathname.replace(/^\/(en|es)/, '/en') || '/en/';
+---
+
+<div class="lang-switcher">
+  <a
+    href={esHref}
+    class:list={['lang-option', { active: lang === 'es' }]}
+    aria-label="Español"
+  >ES</a>
+  <span class="lang-sep">|</span>
+  <a
+    href={enHref}
+    class:list={['lang-option', { active: lang === 'en' }]}
+    aria-label="English"
+  >EN</a>
+</div>

@@ -1,0 +1,63 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+export interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const codeLines = `const engineer = {
+  name: "César Balderas Guillén",
+  role: "Software Engineer & CTO",
+  company: "Valion Digital Consulting",
+  stack: ["Django", "React", "Docker", "PostgreSQL"],
+  passion: "Building scalable web solutions",
+  available: true,
+};
+
+async function buildSolution(client) {
+  const requirements = await analyze(client.needs);
+  const architecture = design(requirements);
+  const product = await develop(architecture);
+  return deploy(product, "DigitalOcean");
+}
+
+// Clean code. Real solutions.
+// Código limpio. Soluciones reales.`.repeat(3);
+---
+
+<section class="hero">
+  <div class="hero-bg-code" aria-hidden="true">
+    <pre>{codeLines}</pre>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="animate-fade-in-up">
+        <div class="hero-badge">
+          <span class="dot-active"></span>
+          {t('hero.badge')}
+        </div>
+      </div>
+
+      <h1 class="hero-name animate-fade-in-up delay-1">
+        César Balderas<br /><span>Guillén</span>
+      </h1>
+
+      <p class="hero-role animate-fade-in-up delay-2">
+        {t('hero.role')}
+      </p>
+
+      <div class="hero-ctas animate-fade-in-up delay-3">
+        <a href={`/${lang}/#projects`} class="btn-primary-custom">
+          {t('hero.cta.projects')}
+        </a>
+        <a href={`/${lang}/#contact`} class="btn-outline-custom">
+          {t('hero.cta.contact')}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

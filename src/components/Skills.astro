@@ -1,0 +1,77 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+export interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const skills = [
+  { label: 'Django / Python', pct: 90 },
+  { label: 'Bootstrap / CSS', pct: 85 },
+  { label: 'MySQL / SQL',     pct: 85 },
+  { label: 'Docker / Linux',  pct: 80 },
+  { label: 'React / JS',      pct: 70 },
+  { label: 'Figma',           pct: 70 },
+];
+
+const softKeys = [
+  'skills.soft.1',
+  'skills.soft.2',
+  'skills.soft.3',
+  'skills.soft.4',
+  'skills.soft.5',
+  'skills.soft.6',
+];
+---
+
+<section id="skills" class="section" style="background: var(--color-surface);">
+  <div class="container">
+    <h2
+      class="section-title mb-5"
+      data-reveal
+      style="--reveal-delay: 0s"
+    >{t('skills.title')}</h2>
+
+    <div class="row g-5">
+      <!-- Technical skills -->
+      <div class="col-lg-7" data-reveal style="--reveal-delay: 0.1s">
+        <div class="d-flex flex-column gap-4">
+          {skills.map((skill, i) => (
+            <div>
+              <div class="skill-label">
+                <span>{skill.label}</span>
+                <span style="color: var(--color-accent); font-variant-numeric: tabular-nums;">
+                  {skill.pct}%
+                </span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-fill"
+                  style={`--skill-width: ${skill.pct}%; --reveal-delay: ${0.1 + i * 0.1}s`}
+                ></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Soft skills -->
+      <div class="col-lg-5" data-reveal style="--reveal-delay: 0.3s">
+        <h3 style="font-size: 0.78rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em;">
+          {t('skills.soft.title')}
+        </h3>
+        <div class="soft-tags">
+          {softKeys.map((key, i) => (
+            <span
+              class="soft-tag"
+              style={`transition-delay: ${i * 0.06}s`}
+            >{t(key)}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

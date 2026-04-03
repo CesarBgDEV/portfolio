@@ -1,0 +1,6 @@
+---
+// Redirect to the appropriate language based on Accept-Language header
+const acceptLanguage = Astro.request.headers.get('accept-language') || '';
+const lang = acceptLanguage.toLowerCase().startsWith('en') ? 'en' : 'es';
+return Astro.redirect(`/${lang}/`, 302);
+---

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Experience from '../../components/Experience.astro';
+import Projects from '../../components/Projects.astro';
+import Skills from '../../components/Skills.astro';
+import Contact from '../../components/Contact.astro';
+
+const lang = 'en';
+---
+
+<BaseLayout
+  lang={lang}
+  title="César Balderas Guillén — Software Engineer & CTO"
+  description="Software Engineer, Co-Founder and CTO at Valion Digital Consulting. Specialized in full stack web development, system architecture and cloud deployment."
+>
+  <Nav lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Experience lang={lang} />
+    <Projects lang={lang} />
+    <Skills lang={lang} />
+    <Contact lang={lang} />
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        &copy; {new Date().getFullYear()} César Balderas Guillén ·{' '}
+        <span class="footer-accent">Built with Astro · Deployed on DigitalOcean</span>
+      </p>
+    </div>
+  </footer>
+</BaseLayout>
