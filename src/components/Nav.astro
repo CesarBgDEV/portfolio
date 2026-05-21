@@ -15,10 +15,9 @@ const t = useTranslations(lang);
     <a class="navbar-brand nav-logo" href={`/${lang}/`}>César BG</a>
 
     <button
+      id="nav-toggle"
       class="navbar-toggler"
       type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navMenu"
       aria-controls="navMenu"
       aria-expanded="false"
       aria-label="Toggle navigation"
@@ -79,3 +78,29 @@ const t = useTranslations(lang);
     </div>
   </div>
 </nav>
+
+<script is:inline>
+  (function () {
+    var toggle = document.getElementById('nav-toggle');
+    var menu   = document.getElementById('navMenu');
+    if (!toggle || !menu) return;
+
+    function open()  { menu.classList.add('show');    toggle.setAttribute('aria-expanded', 'true');  }
+    function close() { menu.classList.remove('show'); toggle.setAttribute('aria-expanded', 'false'); }
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      menu.classList.contains('show') ? close() : open();
+    });
+
+    // Close when a nav link is clicked (anchor navigation)
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', close);
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function (e) {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) close();
+    });
+  })();
+</script>

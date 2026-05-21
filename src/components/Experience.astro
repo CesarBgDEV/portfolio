@@ -8,13 +8,17 @@ export interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
+const valionChips = lang === 'es'
+  ? ['Liderazgo técnico', 'Gestión de proyectos', 'Consultoría', 'Arquitectura de software', 'Relación con clientes']
+  : ['Technical leadership', 'Project management', 'Consulting', 'Software architecture', 'Client relations'];
+
 const experiences = [
   {
     roleKey: 'exp.1.role',
     companyKey: 'exp.1.company',
     periodKey: 'exp.1.period',
     descKey: 'exp.1.desc',
-    stack: ['Astro', 'Django', 'Docker', 'Nginx', 'DigitalOcean'],
+    stack: valionChips,
     current: true,
   },
   {
@@ -22,7 +26,7 @@ const experiences = [
     companyKey: 'exp.2.company',
     periodKey: 'exp.2.period',
     descKey: 'exp.2.desc',
-    stack: ['Django', 'Bootstrap', 'MySQL', 'Git'],
+    stack: ['Node.js', 'Python', 'AWS', 'Kubernetes', 'React', 'JavaScript'],
     current: true,
   },
   {
@@ -30,7 +34,7 @@ const experiences = [
     companyKey: 'exp.3.company',
     periodKey: 'exp.3.period',
     descKey: 'exp.3.desc',
-    stack: ['CodeIgniter', 'Bootstrap', 'MySQL', 'jQuery'],
+    stack: ['Django', 'Bootstrap', 'MySQL', 'Git'],
     current: false,
   },
   {
@@ -38,7 +42,7 @@ const experiences = [
     companyKey: 'exp.4.company',
     periodKey: 'exp.4.period',
     descKey: 'exp.4.desc',
-    stack: ['Figma', 'Atomic Design'],
+    stack: ['CodeIgniter', 'Bootstrap', 'MySQL', 'jQuery'],
     current: false,
   },
   {
@@ -46,6 +50,14 @@ const experiences = [
     companyKey: 'exp.5.company',
     periodKey: 'exp.5.period',
     descKey: 'exp.5.desc',
+    stack: ['Figma', 'Atomic Design'],
+    current: false,
+  },
+  {
+    roleKey: 'exp.6.role',
+    companyKey: 'exp.6.company',
+    periodKey: 'exp.6.period',
+    descKey: 'exp.6.desc',
     stack: ['.NET', 'SQL Server', 'Genexus'],
     current: false,
   },

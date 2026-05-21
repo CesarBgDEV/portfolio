@@ -1,9 +1,7 @@
 ---
 import { useTranslations } from '../i18n/utils';
-
-export interface Props {
-  lang: 'es' | 'en';
-}
+import HeroDots from './HeroDots.jsx';
+import TypewriterName from './TypewriterName.jsx';
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
@@ -26,9 +24,12 @@ async function buildSolution(client) {
 
 // Clean code. Real solutions.
 // Código limpio. Soluciones reales.`.repeat(3);
+
 ---
 
 <section class="hero">
+  <HeroDots client:load />
+
   <div class="hero-bg-code" aria-hidden="true">
     <pre>{codeLines}</pre>
   </div>
@@ -43,7 +44,7 @@ async function buildSolution(client) {
       </div>
 
       <h1 class="hero-name animate-fade-in-up delay-1">
-        César Balderas<br /><span>Guillén</span>
+        <TypewriterName client:load />
       </h1>
 
       <p class="hero-role animate-fade-in-up delay-2">
