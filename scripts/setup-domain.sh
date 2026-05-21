@@ -50,11 +50,21 @@ step "[3/5] Creando configuración Nginx para $DOMAIN..."
 
 CONF="/etc/nginx/sites-available/$DOMAIN"
 
+# Directorio para los challenges de Let's Encrypt
+mkdir -p /var/www/certbot
+
 cat > "$CONF" <<NGINX
 server {
     listen 80;
     listen [::]:80;
     server_name $DOMAIN $WWW;
+
+    # ACME challenge — se sirve localmente, NUNCA al proxy
+    location /.well-known/acme-challenge/ {
+        root             /var/www/certbot;
+        default_type     "text/plain";
+        try_files        \$uri =404;
+    }
 
     # Reverse proxy al contenedor Docker
     location / {
